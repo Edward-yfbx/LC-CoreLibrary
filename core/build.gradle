@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    greendao {
+        schemaVersion 13
+    }
+
+}
+
+dependencies {
+    api 'com.android.support:appcompat-v7:27.1.1'
+
+    //Retrofit
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //RxJava
+    api 'io.reactivex:rxandroid:1.2.1'
+    api 'io.reactivex:rxjava:1.2.3'
+    //Gson
+    api 'com.google.code.gson:gson:2.8.2'
+    //greendao
+    api 'org.greenrobot:greendao:3.2.2'
+
+    // RecyclerView
+    api "com.android.support:recyclerview-v7:27.1.1"
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
+
+    //Eventbus
+    api 'org.greenrobot:eventbus:3.1.1'
+
+}
