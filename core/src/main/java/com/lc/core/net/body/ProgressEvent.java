@@ -1,4 +1,4 @@
-package com.lc.core.net.rxbus;
+package com.lc.core.net.body;
 
 /**
  * Author:Edward

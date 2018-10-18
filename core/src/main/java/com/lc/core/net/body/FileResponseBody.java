@@ -1,8 +1,7 @@
 package com.lc.core.net.body;
 
 
-import com.lc.core.net.rxbus.ProgressEvent;
-import com.lc.core.net.rxbus.RxBus;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
@@ -56,7 +55,7 @@ public class FileResponseBody extends ResponseBody {
             public long read(Buffer sink, long byteCount) throws IOException {
                 long bytesRead = super.read(sink, byteCount);
                 bytesReaded += bytesRead == -1 ? 0 : bytesRead;
-                RxBus.getDefault().post(new ProgressEvent(contentLength(), bytesReaded));
+                EventBus.getDefault().post(new ProgressEvent(contentLength(), bytesReaded));
                 return bytesRead;
             }
         };

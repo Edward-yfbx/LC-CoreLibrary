@@ -1,13 +1,13 @@
 package com.lc.core.net.subscriber;
 
 
-import com.lc.core.net.rxbus.EventSubscriber;
-import com.lc.core.net.rxbus.ProgressEvent;
-import com.lc.core.net.rxbus.RxBus;
+import com.lc.core.net.body.ProgressEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Author:Edward
@@ -17,36 +17,27 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public abstract class FileSubscriber<T> extends Subscriber<T> {
 
-    private Subscription subscription;
 
     public FileSubscriber() {
-        onProgress();
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onCompleted() {
-        subscription.unsubscribe();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
-        subscription.unsubscribe();
+        EventBus.getDefault().unregister(this);
     }
 
     public abstract void updateProgress(int percent);
 
 
-    public void onProgress() {
-        subscription = RxBus.getDefault()
-                .toObservable(ProgressEvent.class)
-                .onBackpressureBuffer()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new EventSubscriber<ProgressEvent>() {
-                    @Override
-                    protected void onEvent(ProgressEvent event) {
-                        updateProgress(event.percent);
-                    }
-                });
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onProgress(ProgressEvent event) {
+        updateProgress(event.percent);
     }
 }

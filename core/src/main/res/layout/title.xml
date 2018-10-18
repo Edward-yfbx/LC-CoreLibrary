@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/base_title_top"
+        android:paddingLeft="@dimen/d_10"
+        android:paddingRight="@dimen/d_10"
+        android:paddingTop="@dimen/d_4">
+
+        <ImageView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_10"
+            android:src="@mipmap/back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/base_title_logo" />
+
+        <TextClock
+            android:id="@+id/main_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/d_10"
+            android:format24Hour="yyyy 年 MM 月 dd 日"
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/s_10"
+            tools:text="2018年03月05日" />
+
+        <TextClock
+            android:id="@+id/main_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/main_date"
+            android:format24Hour="HH:mm EEEE"
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/s_10"
+            tools:text="10:30 星期五" />
+
+    </RelativeLayout>
+</LinearLayout>
